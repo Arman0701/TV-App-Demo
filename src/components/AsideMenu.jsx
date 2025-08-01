@@ -8,7 +8,7 @@ export const AsideMenu = () => {
       <User />
       <Menu />
       <SettingsAndSupport />
-      <div className="fixed inset-0 -z-10 pointer-events-none w-min h-screen bg-gradient-to-r from-black from-[30%] to-transparent to-[70%] invisible group-hover:visible group-hover:w-screen transition-all" />
+      <div className="fixed inset-0 -z-10 pointer-events-none w-40 duration-[500ms] group-hover:w-screen group-hover:rounded-e-none rounded-e-full ease-linear transition-all h-screen bg-gradient-to-r from-black from-[30%] to-black/20" />
     </aside>
   );
 };

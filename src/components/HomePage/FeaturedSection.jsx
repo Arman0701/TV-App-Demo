@@ -42,12 +42,10 @@ export const FeaturedSection = () => {
         <span className="text-[#858688] font-bold font-lexend uppercase text-2xl mb-2">
           {featured?.Category}
         </span>
-        <div className="flex">
-          <h1 className="flex items-center text-[#f0f0f0] text-8xl leading-none font-grandeecp uppercase">
-            <span className="text-6xl">{featured?.Title.split(' ').slice(0, 1)}</span>{' '}
-            {featured?.Title.split(' ').slice(1)}
-          </h1>
-        </div>
+        <h1 className="flex items-center text-[#f0f0f0] text-8xl leading-none font-grandeecp uppercase">
+          <span className="text-6xl">{featured?.Title.split(' ').slice(0, 1)}</span>{' '}
+          {featured?.Title.split(' ').slice(1)}
+        </h1>
         <div className="text-white font-lexend flex gap-4 text-xl mb-4">
           <span>{featured?.ReleaseYear}</span>
           <span>{featured?.MpaRating}</span>

@@ -20,7 +20,7 @@ export const Menu = () => {
           <div className="flex items-center justify-center w-10 h-10">
             <img src={b.iconUrl} alt={`${b.title} icon`} />
           </div>
-          <p className="text-white text-4xl leading-none font-bold hidden group-hover:block transition-all hover:duration-1000 duration-0">
+          <p className="text-white text-left text-4xl leading-none font-bold overflow-hidden whitespace-nowrap w-0 group-hover:w-56 transition-all ease-linear duration-500">
             {b.title}
           </p>
         </button>
