@@ -20,8 +20,6 @@ export const FeaturedSection = () => {
     };
   }, [featured?.Id]);
 
-  console.log('mountVideoPlayer && featured?.VideoUrl  :::', featured?.VideoUrl);
-
   return (
     <div className="flex flex-col gap-4">
       <video
@@ -31,7 +29,7 @@ export const FeaturedSection = () => {
         loop
         playsInline
         muted
-        className="border-8 border-black w-screen h-screen object-cover absolute top-0 -z-50"
+        className="w-screen h-screen object-cover absolute top-0 -z-50"
       />
       {!mountVideoPlayer || !featured?.VideoUrl ? (
         <img

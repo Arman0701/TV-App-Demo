@@ -12,13 +12,27 @@ export const HomePageProvider = ({ children }) => {
     const response = await fetch(`${BASE_URL}/assets/db/data.json`);
     const data = await response.json();
     setFeatured(data.Featured);
-    setTrendingNow(
-      data.TrendingNow.sort((a, b) => toMilliseconds(a.Date) - toMilliseconds(b.Date))
-    );
+    const lastSeenId = sessionStorage.getItem('lastSeenId');
+    let lastSeenMovie = null;
+    const preparedTrendingList = data.TrendingNow.filter((m) => {
+      if (m.Id === lastSeenId) {
+        lastSeenMovie = m;
+      }
+
+      return m.Id !== lastSeenId;
+    })
+      .slice(0, 50)
+      .sort((a, b) => toMilliseconds(a.Date) - toMilliseconds(b.Date));
+
+    if (lastSeenMovie) {
+      return setTrendingNow([lastSeenMovie, ...preparedTrendingList]);
+    }
+    setTrendingNow(preparedTrendingList);
   };
 
   const changeFeatured = (coverId) => {
     const cover = trendingNow.find((c) => c.Id === coverId);
+    sessionStorage.setItem('lastSeenId', coverId);
     setFeatured(cover);
   };
 
