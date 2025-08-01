@@ -103,14 +103,14 @@ export const TrendingNowSection = () => {
         {trendingNow?.map((card, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[12.5%] aspect-[9/12] overflow-hidden bg-transparent rounded-lg flex items-center justify-center text-xl outline-none border-4 border-transparent focus:border-sky-600 transition-colors duration-200 ease-linear"
+            className="group flex-shrink-0 w-[12.5%] aspect-[9/12] overflow-hidden bg-transparent rounded-lg flex items-center justify-center text-xl outline-none border-4 border-transparent focus:border-sky-600 transition-colors duration-200 ease-linear"
             tabIndex={0}
             onClick={() => changeFeatured(card.Id)}
           >
             <img
               src={`${BASE_URL}/assets/${card.CoverImage}`}
               alt={`${card.Title} cover image`}
-              className="text-black object-cover w-full h-full"
+              className="group-hover:scale-110 group-focus:scale-110 duration-1000 transition-transform text-black object-cover w-full h-full"
             />
           </div>
         ))}

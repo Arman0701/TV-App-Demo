@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { BASE_URL } from '../constants';
+import { BASE_URL, LAST_SEEN_KEY } from '../constants';
 import { toMilliseconds } from '../utils/toMIlliseconds';
 
 const Context = createContext(null);
@@ -7,32 +7,33 @@ const Context = createContext(null);
 export const HomePageProvider = ({ children }) => {
   const [trendingNow, setTrendingNow] = useState(null);
   const [featured, setFeatured] = useState(null);
+  const storageIdsList = JSON.parse(sessionStorage.getItem(LAST_SEEN_KEY)) || [];
 
   const getHomePageData = async () => {
     const response = await fetch(`${BASE_URL}/assets/db/data.json`);
     const data = await response.json();
     setFeatured(data.Featured);
-    const lastSeenId = sessionStorage.getItem('lastSeenId');
-    let lastSeenMovie = null;
-    const preparedTrendingList = data.TrendingNow.filter((m) => {
-      if (m.Id === lastSeenId) {
-        lastSeenMovie = m;
-      }
+    const dataMap = data.TrendingNow.reduce((acc, item) => {
+      acc[item.Id] = item;
+      return acc;
+    }, {});
 
-      return m.Id !== lastSeenId;
-    })
-      .slice(0, 50)
-      .sort((a, b) => toMilliseconds(a.Date) - toMilliseconds(b.Date));
+    const lastSeenMoviesList = storageIdsList
+      .map((id) => {
+        const item = dataMap[id];
+        return item || null;
+      })
+      .filter((item) => item !== null);
 
-    if (lastSeenMovie) {
-      return setTrendingNow([lastSeenMovie, ...preparedTrendingList]);
-    }
-    setTrendingNow(preparedTrendingList);
+    const restOfMovies = data.TrendingNow.filter((m) => !storageIdsList.includes(m.Id)).sort(
+      (a, b) => toMilliseconds(a.Date) - toMilliseconds(b.Date)
+    );
+    setTrendingNow([...lastSeenMoviesList, ...restOfMovies].slice(0, 50));
   };
 
   const changeFeatured = (coverId) => {
     const cover = trendingNow.find((c) => c.Id === coverId);
-    sessionStorage.setItem('lastSeenId', coverId);
+    sessionStorage.setItem(LAST_SEEN_KEY, JSON.stringify([coverId, ...storageIdsList]));
     setFeatured(cover);
   };
 

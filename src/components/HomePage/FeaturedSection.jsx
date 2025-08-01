@@ -39,21 +39,21 @@ export const FeaturedSection = () => {
         />
       ) : null}
       <div className="px-40 h-full pt-44">
-        <span className="text-[#858688] font-bold uppercase text-2xl mb-2">
+        <span className="text-[#858688] font-bold font-lexend uppercase text-2xl mb-2">
           {featured?.Category}
         </span>
-        <img
-          src={`${BASE_URL}/assets/${featured?.TitleImage}`}
-          alt="title image"
-          className="mb-4"
-        />
-        <div className="text-white flex gap-4 text-xl mb-4">
+        <div className="flex">
+          <h1 className="flex items-center text-[#f0f0f0] text-8xl leading-none font-grandeecp uppercase">
+            <span className="text-6xl">{featured?.Title.split(' ').slice(0, 1)}</span>{' '}
+            {featured?.Title.split(' ').slice(1)}
+          </h1>
+        </div>
+        <div className="text-white font-lexend flex gap-4 text-xl mb-4">
           <span>{featured?.ReleaseYear}</span>
           <span>{featured?.MpaRating}</span>
           <span>{toHumanReadableTime(featured?.Duration)}</span>
         </div>
         <div className="overflow-y-auto max-h-52 h-fit mb-4 scrollbar-none">
-          <p className="text-[#c5c8cf] text-2xl w-1/2 ">{featured?.Description}</p>
           <p className="text-[#c5c8cf] text-2xl w-1/2 ">{featured?.Description}</p>
         </div>
 
