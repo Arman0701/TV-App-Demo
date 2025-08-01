@@ -44,7 +44,6 @@ export const HomePageProvider = ({ children }) => {
   const value = {
     trendingNow,
     featured,
-    sliderActiveImageIndex: 0,
     getHomePageData,
     changeFeatured,
   };

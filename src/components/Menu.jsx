@@ -14,7 +14,7 @@ export const Menu = () => {
     <div className="flex flex-col gap-3">
       {menuButtons.map((b, index) => (
         <button
-          className="w-fit group-hover:w-96 flex gap-12 items-center py-4 px-6 rounded-xl hover:bg-slate-500 focus:bg-slate-6 transition-all hover:duration-500 duration-0" // active:bg-[#3b486d]
+          className="w-min group-hover:w-96 group-hover:gap-12 flex gap-0 items-center py-4 px-6 rounded-xl hover:bg-slate-500 focus:bg-slate-6 transition-all duration-1000" // active:bg-[#3b486d]
           key={index}
         >
           <div className="flex items-center justify-center w-10 h-10">
