@@ -1,18 +1,13 @@
-import genresIcon from '../assets/icons/genres.png';
-import homeIcon from '../assets/icons/home.png';
-import moviesIcon from '../assets/icons/movies.png';
-import searchIcon from '../assets/icons/search.png';
-import showsIcon from '../assets/icons/shows.png';
-import watchLaterIcon from '../assets/icons/watch-later.png';
+import { BASE_URL } from '../constants';
 
 export const Menu = () => {
   const menuButtons = [
-    { title: 'Search', iconUrl: searchIcon },
-    { title: 'Home', iconUrl: homeIcon },
-    { title: 'TV Shows', iconUrl: showsIcon },
-    { title: 'Movies', iconUrl: moviesIcon },
-    { title: 'Genres', iconUrl: genresIcon },
-    { title: 'Watch Later', iconUrl: watchLaterIcon },
+    { title: 'Search', iconUrl: `${BASE_URL}/assets/icons/search.png` },
+    { title: 'Home', iconUrl: `${BASE_URL}/assets/icons/home.png` },
+    { title: 'TV Shows', iconUrl: `${BASE_URL}/assets/icons/shows.png` },
+    { title: 'Movies', iconUrl: `${BASE_URL}/assets/icons/movies.png` },
+    { title: 'Genres', iconUrl: `${BASE_URL}/assets/icons/genres.png` },
+    { title: 'Watch Later', iconUrl: `${BASE_URL}/assets/icons/watch-later.png` },
   ];
 
   return (
